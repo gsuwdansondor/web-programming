@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Recipe</title>
+</head>
+<body>
+  <h1>How to make Buuz</h1>
+  <h2>What You Need</h2>
+  <ul>
+    <li>200grams of flour</li>
+    <li>100 ml of water</li>
+    <li>150grams of meat</li>
+    <li>salt</li>
+    <li>black pepper (optional)</li >
+  </ul>
+  <h2>Steps</h2>
+  <ol>
+    <li>Chop the meat into small pieces.</li>
+    <li>Prepare the flour dough by putting water on the flour.</li>
+    <li>Leave the dough to rest while seasoning the meat by your own taste.</li>
+    <li>Prepare the steam pot with hot water.</li>
+    <li>Place the crimped buuz inside and wait for 15 minutes.</li>
+  </ol>
+</body>
+</html>
