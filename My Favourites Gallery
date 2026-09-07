@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Favourites</title>
+</head>
+<body>
+  <h1>My Favourites</h1>
+
+  <div class="card">
+    <h2>Favourite Book: The Quadroon</h2>
+    <img src="https://picsum.photos/300/200?random=1" alt="Women standing in the nature on a bright day" width="300" height="200">
+    <p>Thomas Mayne Raid's <em>"The Quadroon"</em> has <strong>impressive descriptive languages with vivid imagery</strong> which has drawn my interest into books significantly
+    <a href="https://louisiana-anthology.org/texts/reid/reid--quadroon.html" target="_blank" rel="noopener noreferrer">Learn more</a>
+  </div>
+
+  <div class="card">
+    <h2>Favourite Film: The lovely bones</h2>
+    <imh src="https://piscum.photos/300/200?random=1" alt="A girl standing alone in front of a giant tree" width="300" height="200">
+    <p>Peter Jackson's <em>"The lovely bones"</em> film is based on Alice Sebold's 2002 novel. It recieved mixed reviews from critics; while the visual effects, the direction, and the performances of ronan and Tucci were praised, its <strong>story and message</strong> were generally criticised.
+ <a href="https://en.wikipedia.org/wiki/The_Lovely_Bones_(film)" target="_blank" rel="noopener noreferrer">Learn more</a>
+  </div>
+
+<div class="card">
+   <h2>Favourite website: Canva</h2>
+   <img src="https://picsum.photos/300/200?random=3"
+        alt="Blue and purple bakcground with C logo illustrating the iconic logo of Canva"
+        width="300" height="200">
+   <p>Canva is the most <em>User friendly</em> website <strong>graphic design tool</strong>. Used for creating social media posts, presentations, posters, videos, logos and more.
+<a href="https://www.canva.com/"
+target="_blank" rel="noopener noreferrer"> Visit Canva</a>
+
+</div> 
+</body>
+</html>
