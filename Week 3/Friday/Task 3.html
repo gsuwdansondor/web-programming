@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8">
+<style>
+  body { display: flex; justify-content: center;
+         align-items: center; height: 200px; background: #f0fdfa; }
+
+  /* TODO: define @keyframes spin (from 0deg to 360deg) */
+@keyframes spin {
+from { transform: rotate(0deg);}
+to {transform: rotate(360deg);}
+}
+
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 4px solid #ccfbf1;       /* light teal ring */
+    border-top-color: #0f766e;       /* dark teal arc */
+animation: spin 0.8s linear infinite;
+    /* TODO: apply animation: spin 0.8s linear infinite */
+/* 
+  }
+</style>
+</head>
+<body>
+  <div class="spinner"></div>
+</body>
+</html>
