@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>My CSS Advanced Page</title>
+<style>
+:root {
+    --primary: #0f766e;
+    --accent: #14b8a6;
+    --bg: #f0fdfa;
+    --text: #1e293b;
+    --radius: 12px;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #051a0a;
+        --text: #d4edda;
+    }
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+body { background: var(--bg); color: var(--text); padding: 24px; }
+nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    background: #1e293b;
+    color: white;
+}
+nav span { color: var(--accent); font-weight: 700; font-size: 1.2rem; }
+nav a { color: #94a3b8; text-decoration: none; margin-left: 24px; transition: color 0.2s; }
+nav a:hover { color: var(--accent); }
+
+@keyframes fadeslidein {
+    from {opacity: 0; transform: translateY(20px); }
+    to {opacity: 1; transform: translateY(0);}
+}
+.hero {
+    padding: 120px 24px 40px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--bg) 0%, #ccfbf1 100%);
+}
+
+.hero h1 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    animation: fadeslidein 0.8s ease-out forwards;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #64748b;
+    animation: fadeslidein 0.8s ease-out forwards;
+}
+.skills-section {
+    padding: 40px 24px;}
+
+    .sticky-h2 {
+        position: sticky;
+        top: 0;
+        background: var(--bg);
+        padding: 16px 0;
+        font-size: 1.5rem;
+        color: var(--primary);
+    }
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    @media (min-width: 640px) {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .card {
+        background: var(--bg);
+        border: 2px solid var(--accent);
+        border-radius: var(--radius);
+        padding: 24px;
+        font-size: 15px;
+        color: var(--text);
+        transition: 0.25s, box-shadow 0.25s;
+    }
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 28px rgba(15, 118, 110, 0.18);
+    }
+
+    .card[data-icon]::before {
+        content: attr(data-icon);
+        display: block;
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+    }
+}
+
+</style>
+</head>
+<body>
+  <nav>
+    <span>YOUR NAME</span>
+    <div><a href="#">Home</a> <a href="#">Skills</a></div>
+  </nav>
+  <section class="hero">
+    <h1>Hello, I am [Your Name]</h1>
+    <p>[Your major] · Gachon University · Week 3 CSS Advanced</p>
+  </section>
+  <section class="skills-section">
+    <h2 class="sticky-h2">My Skills</h2>
+    <div class="grid">
+      <div class="card" data-icon="🌐">HTML5</div>
+      <div class="card" data-icon="🎨">CSS3</div>
+      <div class="card" data-icon="⚡">JavaScript</div>
+    </div>
+  </section>
+</body>
+</html>
