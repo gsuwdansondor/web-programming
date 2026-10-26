@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web Development Homework Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #3b1a7a;
+    --card: #4a2a8f;
+    --card-border: #6a47b8;
+    --purple: #7c3aed;
+    --text: #faf5ff;
+    --muted: #d8c8f5;
+    --accent: #e9d5ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    background: var(--bg);
+    padding: 48px 20px 80px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+
+
+  .profile {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 20px 28px;
+    padding: 28px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 28px;
+  }
+  .avatar {
+    width: 84px; height: 84px; border-radius: 24px;
+    display: grid; place-items: center;
+    font-size: 30px; font-weight: 800;
+    background: var(--purple);
+  }
+  .who { flex: 1; min-width: 220px; }
+  .who h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
+  .who p { color: var(--muted); margin-top: 6px; font-size: 15px; }
+  .meta { display: flex; gap: 28px; width: 100%; padding-top: 18px; border-top: 1px solid var(--card-border); }
+  .meta small { display: block; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .meta strong { font-size: 17px; font-weight: 700; }
+
+  h2.section { font-size: 20px; font-weight: 700; margin: 12px 4px 0; color: var(--accent); }
+
+
+  .week {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 22px;
+    overflow: hidden;
+  }
+  .week-head {
+    width: 100%; display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 22px; cursor: pointer; border: 0; color: var(--text);
+    font: inherit; font-weight: 700; font-size: 17px;
+    background: var(--purple);
+  }
+  .week-head .count { font-weight: 500; font-size: 13px; color: var(--muted); margin-left: 10px; }
+  .chev { transition: transform .2s; }
+  .week.closed .chev { transform: rotate(-90deg); }
+  .week.closed .tasks { display: none; }
+  .tasks { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 16px; }
+  .tasks a {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 14px; border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--card-border);
+    color: var(--text); text-decoration: none; font-weight: 500;
+    transition: background .15s;
+  }
+  .tasks a:hover, .tasks a:focus-visible { background: rgba(255, 255, 255, 0.2); outline: none; }
+  .tasks a span.arrow { color: var(--accent); }
+  @media (max-width: 560px) { .tasks { grid-template-columns: repeat(2, 1fr); } }
+  .week-head:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="profile">
+    <div class="avatar">EA</div>
+    <div class="who">
+      <h1>Web Development Homework Hub</h1>
+      <p>Course portfolio</p>
+    </div>
+    <div class="meta">
+      <div><small>Student name</small><strong>GANBOLD SUVDANSONDOR</strong></div>
+      <div><small>Student ID</small><strong>202637613</strong></div>
+    </div>
+  </section>
+
+  <h2 class="section">Web Pro Projects</h2>
+
+
+  <section class="week">
+    <button class="week-head" aria-expanded="true">
+      <span>Week 1<span class="count">8 tasks</span></span><span class="chev">▾</span>
+    </button>
+    <ul class="tasks">
+        <li><a href="Week 2 Monday/task 1.html" target="_blank" rel="noopener">Task 1<span class="arrow">↗</span></a></li>
+        <li><a href="Week 2 Monday/task 2.html" target="_blank" rel="noopener">Task 2<span class="arrow">↗</span></a></li>
+        <li><a href="Week 2 Monday/task 3.html" target="_blank" rel="noopener">Task 3<span class="arrow">↗</span></a></li>
+        <li><a href="Week 2 Monday/task 4.html" target="_blank" rel="noopener">Task 4<span class="arrow">↗</span></a></li>
+        <li><a href="Week 2 Monday/task 5.html" target="_blank" rel="noopener">Task 5<span class="arrow">↗</span></a></li>
+        <li><a href="Week 2 Monday/task 6.html" target="_blank" rel="noopener">Task 6<span class="arrow">↗</span></a></li>
+        <li><a href="Week 2 Monday/task 7.html" target="_blank" rel="noopener">Task 7<span class="arrow">↗</span></a></li>
+        <li><a href="Week 2 Monday/task 8.html" target="_blank" rel="noopener">Task 8<span class="arrow">↗</span></a></li>
+    </ul>
+  </section>
+
+
+  <section class="week">
+    <button class="week-head" aria-expanded="true">
+      <span>Week 2<span class="count">8 tasks</span></span><span class="chev">▾</span>
+    </button>
+    <ul class="tasks">
+        <li><a href="Week 2/ Friday/Task 1.html" target="_blank" rel="noopener">Task 1<span class="arrow">↗</span></a></li>
+        <li><a href="Week 2/ Friday/Task 2.html" target="_blank" rel="noopener">Task 2<span class="arrow">↗</span></a></li>
+        <li><a href="Week 2/ Friday/Task 3.html" target="_blank" rel="noopener">Task 3<span class="arrow">↗</span></a></li>
+        <li><a href="Week 2/ Friday/Task 4.html" target="_blank" rel="noopener">Task 4<span class="arrow">↗</span></a></li>
+        <li><a href="Week 2/ Friday/Task 5.html" target="_blank" rel="noopener">Task 5<span class="arrow">↗</span></a></li>
+        <li><a href="Week 2/ Friday/Task 6.html" target="_blank" rel="noopener">Task 6<span class="arrow">↗</span></a></li>
+        <li><a href="Week 2/ Friday/Task 7.html" target="_blank" rel="noopener">Task 7<span class="arrow">↗</span></a></li>
+        <li><a href="Week 2/ Friday/Task 8.html" target="_blank" rel="noopener">Task 8<span class="arrow">↗</span></a></li>
+    </ul>
+  </section>
+
+
+  <section class="week">
+    <button class="week-head" aria-expanded="true">
+      <span>Week 3<span class="count">5 tasks</span></span><span class="chev">▾</span>
+    </button>
+    <ul class="tasks">
+        <li><a href="Week 3/Friday/Task 1.html" target="_blank" rel="noopener">Task 1<span class="arrow">↗</span></a></li>
+        <li><a href="Week 3/Friday/Task 2.html" target="_blank" rel="noopener">Task 2<span class="arrow">↗</span></a></li>
+        <li><a href="Week 3/Friday/Task 3.html" target="_blank" rel="noopener">Task 3<span class="arrow">↗</span></a></li>
+        <li><a href="Week 3/Friday/Task 4.html" target="_blank" rel="noopener">Task 4<span class="arrow">↗</span></a></li>
+        <li><a href="Week 3/Friday/Task 5.html" target="_blank" rel="noopener">Task 5<span class="arrow">↗</span></a></li>
+    </ul>
+  </section>
+
+  <section class="week">
+    <button class="week-head" aria-expanded="true">
+      <span>Week 3-2<span class="count">8 tasks</span></span><span class="chev">▾</span>
+    </button>
+    <ul class="tasks">
+        <li><a href="Week 3/Monday/Task 1.html" target="_blank" rel="noopener">Task 1<span class="arrow">↗</span></a></li>
+        <li><a href="Week 3/Monday/Task 2.html" target="_blank" rel="noopener">Task 2<span class="arrow">↗</span></a></li>
+        <li><a href="Week 3/Monday/Task 3.html" target="_blank" rel="noopener">Task 3<span class="arrow">↗</span></a></li>
+        <li><a href="Week 3/Monday/Task 4.html" target="_blank" rel="noopener">Task 4<span class="arrow">↗</span></a></li>
+        <li><a href="Week 3/Monday/Task 5.html" target="_blank" rel="noopener">Task 5<span class="arrow">↗</span></a></li>
+        <li><a href="Week 3/Monday/Task 6.html" target="_blank" rel="noopener">Task 6<span class="arrow">↗</span></a></li>
+        <li><a href="Week 3/Monday/Task 7.html" target="_blank" rel="noopener">Task 7<span class="arrow">↗</span></a></li>
+        <li><a href="Week 3/Monday/Task 8.html" target="_blank" rel="noopener">Task 8<span class="arrow">↗</span></a></li>
+    </ul>
+  </section>
+
+    <section class="week">
+      <button class="week-head" aria-expanded="true">
+        <span>Week 5<span class="count">8 tasks</span></span><span class="chev">▾</span>
+      </button>
+      <ul class="tasks">
+          <li><a href="Week 5/Task 1.html" target="_blank" rel="noopener">Task 1<span class="arrow">↗</span></a></li>
+          <li><a href="Week 5/Task 2.html" target="_blank" rel="noopener">Task 2<span class="arrow">↗</span></a></li>
+          <li><a href="Week 5/Task 3.html" target="_blank" rel="noopener">Task 3<span class="arrow">↗</span></a></li>
+          <li><a href="Week 5/Task 4.html" target="_blank" rel="noopener">Task 4<span class="arrow">↗</span></a></li>
+          <li><a href="Week 5/Task 5.html" target="_blank" rel="noopener">Task 5<span class="arrow">↗</span></a></li>
+          <li><a href="Week 5/Task 6.html" target="_blank" rel="noopener">Task 6<span class="arrow">↗</span></a></li>
+          <li><a href="Week 5/Task 7.html" target="_blank" rel="noopener">Task 7<span class="arrow">↗</span></a></li>
+          <li><a href="Week 5/Task 8.html" target="_blank" rel="noopener">Task 8<span class="arrow">↗</span></a></li>
+      </ul>
+    </section>
+
+    <section class="week">
+      <button class="week-head" aria-expanded="true">
+        <span>Week 6<span class="count">8 tasks</span></span><span class="chev">▾</span>
+      </button>
+      <ul class="tasks">
+          <li><a href="Week 6/Task 1.html" target="_blank" rel="noopener">Task 1<span class="arrow">↗</span></a></li>
+          <li><a href="Week 6/Task 2.html" target="_blank" rel="noopener">Task 2<span class="arrow">↗</span></a></li>
+          <li><a href="Week 6/Task 3.html" target="_blank" rel="noopener">Task 3<span class="arrow">↗</span></a></li>
+          <li><a href="Week 6/Task 4.html" target="_blank" rel="noopener">Task 4<span class="arrow">↗</span></a></li>
+          <li><a href="Week 6/Task 5.html" target="_blank" rel="noopener">Task 5<span class="arrow">↗</span></a></li>
+          <li><a href="Week 6/Task 6.html" target="_blank" rel="noopener">Task 6<span class="arrow">↗</span></a></li>
+          <li><a href="Week 6/Task 7.html" target="_blank" rel="noopener">Task 7<span class="arrow">↗</span></a></li>
+          <li><a href="Week 6/Task 8.html" target="_blank" rel="noopener">Task 8<span class="arrow">↗</span></a></li>
+      </ul>
+    </section>
+
+    <section class="week">
+      <button class="week-head" aria-expanded="true">
+        <span>Week 7<span class="count">8 tasks</span></span><span class="chev">▾</span>
+      </button>
+      <ul class="tasks">
+          <li><a href="Week 7/Task 1.html" target="_blank" rel="noopener">Task 1<span class="arrow">↗</span></a></li>
+          <li><a href="Week 7/Task 2.html" target="_blank" rel="noopener">Task 2<span class="arrow">↗</span></a></li>
+          <li><a href="Week 7/Task 3.html" target="_blank" rel="noopener">Task 3<span class="arrow">↗</span></a></li>
+          <li><a href="Week 7/Task 4.html" target="_blank" rel="noopener">Task 4<span class="arrow">↗</span></a></li>
+          <li><a href="Week 7/Task 5.html" target="_blank" rel="noopener">Task 5<span class="arrow">↗</span></a></li>
+          <li><a href="Week 7/Task 6.html" target="_blank" rel="noopener">Task 6<span class="arrow">↗</span></a></li>
+          <li><a href="Week 7/Task 7.html" target="_blank" rel="noopener">Task 7<span class="arrow">↗</span></a></li>
+          <li><a href="Week 7/Task 8.html" target="_blank" rel="noopener">Task 8<span class="arrow">↗</span></a></li>
+      </ul>
+    </section>
+
+    <section class="week">
+      <button class="week-head" aria-expanded="true">
+        <span>Week 8<span class="count">8 tasks</span></span><span class="chev">▾</span>
+      </button>
+      <ul class="tasks">
+          <li><a href="Week 8/Task 1.html" target="_blank" rel="noopener">Task 1<span class="arrow">↗</span></a></li>
+          <li><a href="Week 8/Task 2.html" target="_blank" rel="noopener">Task 2<span class="arrow">↗</span></a></li>
+          <li><a href="Week 8/Task 3.html" target="_blank" rel="noopener">Task 3<span class="arrow">↗</span></a></li>
+          <li><a href="Week 8/Task 4.html" target="_blank" rel="noopener">Task 4<span class="arrow">↗</span></a></li>
+          <li><a href="Week 8/Task 5.html" target="_blank" rel="noopener">Task 5<span class="arrow">↗</span></a></li>
+          <li><a href="Week 8/Task 6.html" target="_blank" rel="noopener">Task 6<span class="arrow">↗</span></a></li>
+          <li><a href="Week 8/Task 7.html" target="_blank" rel="noopener">Task 7<span class="arrow">↗</span></a></li>
+          <li><a href="Week 8/Task 8.html" target="_blank" rel="noopener">Task 8<span class="arrow">↗</span></a></li>
+      </ul>
+    </section>
+    
+
+    <section class="week">
+      <button class="week-head" aria-expanded="true">
+        <span>Week 9<span class="count">8 tasks</span></span><span class="chev">▾</span>
+      </button>
+      <ul class="tasks">
+          <li><a href="Week 9/Task 1.html" target="_blank" rel="noopener">Task 1<span class="arrow">↗</span></a></li>
+          <li><a href="Week 9/Task 2.html" target="_blank" rel="noopener">Task 2<span class="arrow">↗</span></a></li>
+          <li><a href="Week 9/Task 3.html" target="_blank" rel="noopener">Task 3<span class="arrow">↗</span></a></li>
+          <li><a href="Week 9/Task 4.html" target="_blank" rel="noopener">Task 4<span class="arrow">↗</span></a></li>
+          <li><a href="Week 9/Task 5.html" target="_blank" rel="noopener">Task 5<span class="arrow">↗</span></a></li>
+          <li><a href="Week 9/Task 6.html" target="_blank" rel="noopener">Task 6<span class="arrow">↗</span></a></li>
+          <li><a href="Week 9/Task 7.html" target="_blank" rel="noopener">Task 7<span class="arrow">↗</span></a></li>
+          <li><a href="Week 9/Task 8.html" target="_blank" rel="noopener">Task 8<span class="arrow">↗</span></a></li>
+      </ul> 
+    </section>
+
+    <section class="week">
+      <button class="week-head" aria-expanded="true">
+        <span>Week 10<span class="count">8 tasks</span></span><span class="chev">▾</span>
+      </button>
+      <ul class="tasks">
+          <li><a href="Week 10/Task 1.html" target="_blank" rel="noopener">Task 1<span class="arrow">↗</span></a></li>
+          <li><a href="Week 10/Task 2.html" target="_blank" rel="noopener">Task 2<span class="arrow">↗</span></a></li>
+          <li><a href="Week 10/Task 3.html" target="_blank" rel="noopener">Task 3<span class="arrow">↗</span></a></li>
+          <li><a href="Week 10/Task 4.html" target="_blank" rel="noopener">Task 4<span class="arrow">↗</span></a></li>
+          <li><a href="Week 10/Task 5.html" target="_blank" rel="noopener">Task 5<span class="arrow">↗</span></a></li>
+          <li><a href="Week 10/Task 6.html" target="_blank" rel="noopener">Task 6<span class="arrow">↗</span></a></li>
+          <li><a href="Week 10/Task 7.html" target="_blank" rel="noopener">Task 7<span class="arrow">↗</span></a></li>
+          <li><a href="Week 10/Task 8.html" target="_blank" rel="noopener">Task 8<span class="arrow">↗</span></a></li>
+      </ul> 
+    </section>
+
+    <section class="week">
+      <button class="week-head" aria-expanded="true">
+        <span>Week 11<span class="count">8 tasks</span></span><span class="chev">▾</span>
+      </button>
+      <ul class="tasks">
+          <li><a href="Week 11/Task 1.html" target="_blank" rel="noopener">Task 1<span class="arrow">↗</span></a></li>
+          <li><a href="Week 11/Task 2.html" target="_blank" rel="noopener">Task 2<span class="arrow">↗</span></a></li>
+          <li><a href="Week 11/Task 3.html" target="_blank" rel="noopener">Task 3<span class="arrow">↗</span></a></li>
+          <li><a href="Week 11/Task 4.html" target="_blank" rel="noopener">Task 4<span class="arrow">↗</span></a></li>
+          <li><a href="Week 11/Task 5.html" target="_blank" rel="noopener">Task 5<span class="arrow">↗</span></a></li>
+          <li><a href="Week 11/Task 6.html" target="_blank" rel="noopener">Task 6<span class="arrow">↗</span></a></li>
+          <li><a href="Week 11/Task 7.html" target="_blank" rel="noopener">Task 7<span class="arrow">↗</span></a></li>
+          <li><a href="Week 11/Task 8.html" target="_blank" rel="noopener">Task 8<span class="arrow">↗</span></a></li>
+      </ul> 
+    </section>
+
+    
+</main>
+
+<script>
+  document.querySelectorAll(".week-head").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const closed = btn.parentElement.classList.toggle("closed");
+      btn.setAttribute("aria-expanded", String(!closed));
+    });
+  });
+</script>
+</body>
+</html>
