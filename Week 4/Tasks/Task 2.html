@@ -1,51 +1,42 @@
 <!DOCTYPE html>
-<html><body style="font-family:system-ui;padding:20px;max-width:420px;margin:auto">
+<html><body style="font-family:system-ui;padding:24px;display:flex;justify-content:center">
   <style>
-    h2 { color: #1a56db; }
-    #search { width:100%; padding:10px 14px; font-size:16px;
-      border:2px solid #1a56db; border-radius:10px; margin-bottom:14px; }
-    .student { padding:10px 14px; margin-bottom:6px; background:#f0f4ff;
-      border-radius:8px; border:1px solid #c8d4f0; font-size:15px; }
-    mark { background: #f7df1e; border-radius: 3px; }
-    #no-results { display:none; color:#9ca3af; text-align:center; padding:20px; }
+    .card {
+      padding: 24px; border-radius: 16px; width: 260px;
+      background: #f0f4ff; border: 2px solid #c8d4f0;
+      text-align: center; transition: all 0.3s;
+    }
+    .card.dark {
+      background: #1a2340; border-color: #3a4a70;
+      color: white;
+    }
+    .avatar {
+      width: 70px; height: 70px; border-radius: 50%;
+      background: #1a56db; display: inline-flex;
+      align-items: center; justify-content: center;
+      font-size: 32px; margin-bottom: 12px;
+    }
+    button { padding: 8px 20px; border-radius: 20px; cursor: pointer; border: none; margin-top: 14px; font-weight: bold; }
   </style>
 
-  <h2>Student Search</h2>
-  <input id="search" type="text" placeholder="Search students...">
-  <div id="student-list">
-    <div class="student" data-name="Kim Jisoo">Kim Jisoo — Web Programming</div>
-    <div class="student" data-name="Park Minjun">Park Minjun — Computer Science</div>
-    <div class="student" data-name="Lee Sooyeon">Lee Sooyeon — Software Engineering</div>
-    <div class="student" data-name="Choi Hyunwoo">Choi Hyunwoo — Artificial Intelligence</div>
-    <div class="student" data-name="Jung Yuna">Jung Yuna — Data Science</div>
-    <div class="student" data-name="Kang Seojun">Kang Seojun — Web Programming</div>
+  <div id="card" class="card">
+    <div class="avatar">👩‍💻</div>
+    <h2>Ganbold Suvdansondor</h2>
+    <p>Web Programming Student</p>
+    <button id="toggle-btn">🌙 Dark Mode</button>
   </div>
-  <p id="no-results">No students found.</p>
 
   <script>
-   const searchInput = document.querySelector('#search');
-    const students = document.querySelector('.student');
-    const noResults = document.querySelector('#no-results');
+    const card = document.querySelector('#card');
+    const btn = document.querySelector('#toggle-btn');
 
-    searchInput.addEventListener('input', (e) => {
-      const query = searchInput.value.toLowerCase();
-      let visible = 0;
-
-      students.forEach(student => {
-        const name = student.dataset.name.toLowerCase();
-        if (name.includes(term)) {
-          student.style.display = '';
-          visible ++;
-         
-          if (term) {}
-          const rx = new RegExp(`(${term})`, 'gi');
-          student.innerHTML = student.dataset.name.replace(rx, '<mark>$1</mark>') + ' — ' + student.textContent.split('—')[1].trim();
-        } else {
-          student.style.display = 'none';
-        }
-      });
-
-      noResults.style.display = visible === 0 ? 'none' : 'block';
+    btn.addEventListener('click', () => {
+      card.classList.toggle('dark');
+      if (card.classList.contains('dark')) {
+        btn.textContent = '☀️ Light Mode';
+      } else {
+        btn.textContent = '🌙 Dark Mode';
+      }
     });
   </script>
 </body></html>
