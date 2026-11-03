@@ -31,12 +31,12 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     const username = uname.value.trim();
 
-    if (!val) {
+    if (!username) {
         errEl.textContent = 'Username is required.';
         success.textContent = '';
     } else {
         errEl.textContent = '';
-        success.textContent = `Welcome, ${val}!`;
+        success.textContent = `Welcome, ${username}!`;
     }
 });
 
