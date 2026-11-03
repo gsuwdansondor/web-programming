@@ -29,10 +29,6 @@
     const v = emailInput.validity;
     const isEmpty = emailInput.value === '';
 
-emailImput.addEventlistener('input', () => {
-    const v = emailInput.validity;
-    const isEmpty = emailInput.value === '';
-
     if (isEmpty) {
       emailInput.classList.remove('valid-ok', 'valid-err');
       errEl.textContent = '';
@@ -47,12 +43,12 @@ emailImput.addEventlistener('input', () => {
       emailInput.classList.remove('valid-ok');
       okEl.textContent = '';
       if (v.typeMismatch) {
-        errEl.textContent = 'Not a valid email address.';
-      } else if (v.valueMissing) {
+        errEl.textContent = 'Not a valid email address.';}
+      }else if (v.valueMissing) {
         errEl.textContent = 'Email is required.';
     
     }
 
-  });
+});
 </script>
 </body></html>
