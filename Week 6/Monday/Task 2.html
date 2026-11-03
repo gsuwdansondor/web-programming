@@ -43,12 +43,11 @@
       emailInput.classList.remove('valid-ok');
       okEl.textContent = '';
       if (v.typeMismatch) {
-        errEl.textContent = 'Not a valid email address.';}
-      }else if (v.valueMissing) {
+        errEl.textContent = 'Not a valid email address.';
+      } else if (v.valueMissing) {
         errEl.textContent = 'Email is required.';
-    
+      }
     }
-
-});
+  });
 </script>
 </body></html>
