@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html><body style="font-family:system-ui;padding:24px;max-width:500px;margin:auto">
+  <h2>Image Format Practice</h2>
+
+<picture>
+    <source
+    srcset="photo-400.webp 400w, photo-800.webp 800w"
+    sizes="(max-width: 400px) 400px, 800px"
+    type="image/webp">
+
+    <img
+    src="https://picsum.photos/800/400"
+    srcset="https://picsum.photos/400/200 400w, https://picsum.photos/800/400 800w"
+    sizes="(max-width: 400px) 400px, 800px"
+    alt="Scenic landscape photo - practicec example"
+    width="800" height="400"
+    fetchpriority="high">
+</picture>
+
+  <p style="margin-top:12px;font-size:13px;color:#666">
+    Open Network tab, reload, and check the image size. With real WebP files,
+    you'd see 25-34% smaller file sizes vs JPEG.
+  </p>
+</body></html>
