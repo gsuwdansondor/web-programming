@@ -1,1 +1,47 @@
+<!DOCTYPE html>
+<html><body style="font-family:system-ui;padding:24px">
+<style>
+  .btn {
+    display:inline-block; background:#1a7f5a; color:white;
+    padding:10px 24px; border-radius:8px; cursor:pointer; font-size:15px;
+    font-weight:600; border:none; /* Add :focus-visible style here! */
+  }
+  /* Add :focus-visible rule below */
+  .btn:focus-visible {
+    outline: 3px solid #1a7f5a;
+    outline-offset: 3px;
+  }
+  button:focus-visible {
+    outline: 3px solid #dc2626;
+    outline-offset: 3px;
+  }
+</style>
 
+<p>Try pressing Tab then Enter:</p>
+
+<!-- ❌ FIX THIS: change div to button -->
+<button class="btn" type="button" onclick="alert('Clicked!')">
+  Submit form
+</div>
+
+<!-- ❌ FIX THIS: make the close button accessible -->
+<button type="button" aria-label="Close"
+style="
+  margin-left:16px; background:#dc2626; color:white;
+  border:none; border-radius:50%; width:36px; height:36px;
+  font-size:18px; cursor:pointer;" onclick="alert('Closed')">
+  ✕
+</button>
+
+<div id="result" style="margin-top:16px;font-size:14px;color:#666"></div>
+
+<script>
+  // Log when each button is activated (click or keyboard)
+  document.querySelectorAll('button, .btn').forEach(el => {
+    el.addEventListener('click', () => {
+      document.getElementById('result').textContent =
+        '✅ Activated! (works by keyboard and mouse)';
+    });
+  });
+</script>
+</body></html>
