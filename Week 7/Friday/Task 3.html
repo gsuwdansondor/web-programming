@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Script Loading Demo</title>
+  <style>
+    body { font-family: system-ui; padding: 20px; }
+    #status { padding: 12px; border-radius: 8px; margin-top: 12px; font-size: 14px; }
+    .ok { background: #dcfce7; color: #166534; }
+    .pending { background: #fef3c7; color: #92400e; }
+  </style>
+
+  <script type="module">
+    document.getElementById('status').textContent =
+      'DOM was ready when this script ran (deferred)';
+    document.getElementById('status').className = 'ok';
+    console.log('Main script ran (deferred) at', Math.round(performance.now()), 'ms');
+  </script>
+
+  <script type="module" async>
+    const start = Date.now();
+    while (Date.now() - start < 50) {}
+    console.log('Analytics script ran (async) at', Math.round(performance.now()), 'ms');
+  </script>
+</head>
+<body>
+  <main>
+    <h1>Script Loading Test</h1>
+    <p>With defer, the DOM is ready when scripts run. Without defer, scripts block the page.</p>
+    <div id="status" class="pending">Waiting for script...</div>
+  </main>
+</body>
+</html>
