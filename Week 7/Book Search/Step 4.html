@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Book Search</title>
+
+        <style>
+            :root{--dark:#1a2540;--accent:#1a56db;--bg:#f0f4ff;--surf:#fff;--border:#c8d4f0;--text:#1a2340;--muted:#5a6a8a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text)}
+header{background:var(--dark);padding:32px;text-align:center}
+header h1{color:#fff;font-size:24px;font-weight:800}
+header p{color:#94a3b8;font-size:14px;margin-top:6px}
+#search-section{max-width:600px;margin:32px auto;padding:0 20px}
+form{display:flex;gap:10px}
+input{flex:1;padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:16px;font-family:inherit}
+button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s}
+button:hover{background:#1447b3}
+#results-section{max-width:1000px;margin:0 auto;padding:24px 20px}
+#results-section h2{font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px}
+#status{font-size:13px;color:var(--muted);margin-top:6px}
+        </style>
+    </head>
+    <body>
+
+        <header>
+            <h1>📚 Book Search</h1>
+            <p>Search for books using the Open Library API</p>
+        </header>
+
+        <main>
+            <section id="search-section">
+                <form id="search-form">
+                    <input type="text" id="search-input" placeholder="Search books…" required>
+                    <button type="submit">Search</button>
+                </form>
+            </section>
+
+            <section id="results-section">
+                <h2>Results</h2>
+                <div id="status"></div>
+                <div id="results-grid"></div>
+            </section>
+
+        </main>
+
+        <script>
+            const form = document.getElementById('search-form');
+            const input = document.getElementById('search-input');
+            const status = document.getElementById('status');
+            const btn = document.getElementById('search-btn');
+
+            async function searchBooks(query) {
+                status.className = 'visible';
+                status.textContent = 'Searching...';
+
+                try {
+                const url = 'https://openlibrary.org'
+                +encodeURIComponent(query)
+                + '&limit=15';
+
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('HTTP' + response.status);
+
+                const data = await response.json();
+
+                console.log('Found', data.numFound);
+                console.log('First book:', data.docs[0]);
+                status.textContent = 'Found ' + data.numFound + ' results for "' + query + '"';
+
+                } catch (err) {
+                    console.error(err);
+                    status.textContent = 'Error: ' + err.message;
+                }
+
+
+            }
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault()
+                const query = input.value.trim();
+                status.textContent = 'Searching: ' + query;
+                console.log('Query:', query);
+            })
+        </script>
+        </body>
+</html>
