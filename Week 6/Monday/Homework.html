@@ -1,1 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        fieldset {
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+        legend {
+            font-weight: bold;
+            color: #333;
+            padding: 0 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+        input, select {
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        /* Requirement 7: Style valid/invalid states with :valid, :invalid, :not(:placeholder-shown) */
+        input:not(:placeholder-shown):valid {
+            border-color: #28a745;
+            background-color: #f8fff9;
+        }
+        input:not(:placeholder-shown):invalid {
+            border-color: #dc3545;
+            background-color: #fff8f8;
+        }
+        .checkbox-group {
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+        }
+        .checkbox-group input {
+            width: auto;
+        }
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-weight: normal;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
 
+    <form method="post" action="/submit-registration">
+        <fieldset>
+            <legend>Personal Info</legend>
+            
+            <div class="form-group">
+                <label for="fullname">Full Name:</label>
+                <input type="text" id="fullname" name="fullname" required placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+                <label for="studentid">Student ID:</label>
+                <input type="text" id="studentid" name="studentid" pattern="\d{9}" required placeholder="9 digits (e.g. 123456789)">
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob">
+            </div>
+
+            <div class="form-group">
+                <label for="major">Major:</label>
+                <select id="major" name="major" required>
+                    <option value="" disabled selected>Select your major</option>
+                    <option value="cs">Computer Science</option>
+                    <option value="se">Software Engineering</option>
+                    <option value="ds">Data Science</option>
+                    <option value="cyber">Cybersecurity</option>
+                </select>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Account Info</legend>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required placeholder="name@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" minlength="8" required placeholder="At least 8 characters">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" pattern="\d{3}-\d{4}-\d{4}" placeholder="123-4567-8900">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Additional Details</legend>
+
+            <div class="form-group">
+                <label for="experience">Years of coding experience: <span id="range-value">5</span></label>
+                <input type="range" id="experience" name="experience" min="0" max="10" value="5">
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the terms</label>
+            </div>
+        </fieldset>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        const rangeInput = document.getElementById('experience');
+        const rangeValueSpan = document.getElementById('range-value');
+
+        rangeInput.addEventListener('input', function() {
+            rangeValueSpan.textContent = rangeInput.value;
+        });
+    </script>
+</body>
+</html>
