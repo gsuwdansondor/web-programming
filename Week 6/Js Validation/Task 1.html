@@ -1,0 +1,33 @@
+<div class="field-group">
+  <label for="username">Username</label>
+  <input type="text" id="username" required
+    aria-describedby="username-err"
+    aria-invalid="false"
+    placeholder="At least 3 alphanumeric chars">
+  <span id="username-err" role="alert"
+    style="color:red;font-size:12px"></span>
+</div>
+
+<script>
+  const usernameInput = document.getElementById('username');
+  const usernamePattern = /^[a-zA-Z0-9]{3,}$/;
+
+  function validateUsername(input) {
+    const errorspan = document.getElementById('username-err');
+    if (input.validity.valueMissing) {
+      errorspan.textContent = 'Username is required.';
+      input.setAttribute('aria-invalid', 'true');
+    } else if (!usernamePattern.test(input.value)) {
+      errorspan.textContent = 'Username must be at least 3 alphanumeric characters.';
+      input.setAttribute('aria-invalid', 'true');
+    } else {
+      errorspan.textContent = '';
+      input.setAttribute('aria-invalid', 'false');
+    }
+  }
+
+  usernameInput.addEventListener('input', e => {
+    validateUsername(e.target);
+  });
+
+</script>
