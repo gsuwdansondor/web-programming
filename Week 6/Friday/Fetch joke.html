@@ -2,17 +2,111 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Joke Fetcher</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            color: #2d3748;
+            font-size: 26px;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        .joke-container {
+            margin-top: 25px;
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #status {
+            color: #718096;
+            font-style: italic;
+            font-size: 15px;
+        }
+
+        #setup {
+            color: #1a202c;
+            font-size: 18px;
+            font-weight: 500;
+            margin: 0 0 10px 0;
+            line-height: 1.4;
+        }
+
+        #punchline {
+            color: #667eea;
+            font-size: 19px;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.4;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Random Joke Fetcher</h1>
-    
-    <button onclick="getJoke()">Load Joke</button>
+    <div class="card">
+        <h1>😂 Joke Fetcher</h1>
+        
+        <button onclick="getJoke()">Load Joke</button>
 
-    <p id="status"></p>
-    <h3 id="setup"></h3>
-    <p id="punchline"></p>
+        <div class="joke-container">
+            <p id="status">Click the button to get a joke!</p>
+            <h3 id="setup"></h3>
+            <p id="punchline"></p>
+        </div>
+    </div>
 
     <script>
         function getJoke() {
