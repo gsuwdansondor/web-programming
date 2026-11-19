@@ -1,33 +1,132 @@
-<div class="field-group">
-  <label for="username">Username</label>
-  <input type="text" id="username" required
-    aria-describedby="username-err"
-    aria-invalid="false"
-    placeholder="At least 3 alphanumeric chars">
-  <span id="username-err" role="alert"
-    style="color:red;font-size:12px"></span>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+        fieldset { margin-bottom: 15px; padding: 15px; border-radius: 6px; border: 1px solid #ccc; }
+        .field-group { margin-bottom: 15px; display: flex; flex-direction: column; }
+        label { margin-bottom: 5px; font-weight: bold; }
+        input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+        span[role="alert"] { color: #ef4444; font-size: 12px; margin-top: 4px; }
+        button { background: #007bff; color: white; padding: 10px; border: none; border-radius: 4px; width: 100%; cursor: pointer; }
+        button:disabled { background: #a0c4ff; cursor: not-allowed; }
+    </style>
+</head>
+<body>
 
-<script>
-  const usernameInput = document.getElementById('username');
-  const usernamePattern = /^[a-zA-Z0-9]{3,}$/;
+    <form id="reg-form" novalidate>
+        <fieldset>
+            <legend>Account Info</legend>
+            
+            <div class="field-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" required
+                    aria-describedby="username-err"
+                    aria-invalid="false"
+                    placeholder="At least 3 alphanumeric chars">
+                <span id="username-err" role="alert"></span>
+            </div>
 
-  function validateUsername(input) {
-    const errorspan = document.getElementById('username-err');
-    if (input.validity.valueMissing) {
-      errorspan.textContent = 'Username is required.';
-      input.setAttribute('aria-invalid', 'true');
-    } else if (!usernamePattern.test(input.value)) {
-      errorspan.textContent = 'Username must be at least 3 alphanumeric characters.';
-      input.setAttribute('aria-invalid', 'true');
-    } else {
-      errorspan.textContent = '';
-      input.setAttribute('aria-invalid', 'false');
-    }
-  }
+            <div class="field-group">
+                <label for="pw">Password</label>
+                <input type="password" id="pw" minlength="8" required
+                    aria-describedby="pw-err" aria-invalid="false" placeholder="Min. 8 chars"/>
+                <span id="pw-err" role="alert"></span>
+            </div>
 
-  usernameInput.addEventListener('input', e => {
-    validateUsername(e.target);
-  });
+            <div class="field-group">
+                <label for="confirm">Confirm Password</label>
+                <input type="password" id="confirm" required
+                    aria-describedby="confirm-err" aria-invalid="false" placeholder="Re-enter password"/>
+                <span id="confirm-err" role="alert"></span>
+            </div>
+        </fieldset>
 
-</script>
+        <button type="submit" id="submit-btn" disabled>Register</button>
+    </form>
+
+    <script>
+        const form = document.getElementById('reg-form');
+        const submitBtn = document.getElementById('submit-btn');
+
+        const usernameInput = document.getElementById('username');
+        const usernamePattern = /^[a-zA-Z0-9]{3,}$/;
+
+        function validateUsername(input) {
+            const err = document.getElementById('username-err');
+            if (input.validity.valueMissing) {
+                err.textContent = 'Username is required.';
+                input.setAttribute('aria-invalid', 'true');
+                input.style.borderColor = '#ef4444';
+            } else if (!usernamePattern.test(input.value)) {
+                err.textContent = 'Min. 3 chars, letters and numbers only.';
+                input.setAttribute('aria-invalid', 'true');
+                input.style.borderColor = '#ef4444';
+            } else {
+                err.textContent = '';
+                input.setAttribute('aria-invalid', 'false');
+                input.style.borderColor = '#22c55e';
+            }
+        }
+
+        const pw = document.getElementById('pw');
+        const confirm = document.getElementById('confirm');
+
+        function validatePw() {
+            const err = document.getElementById('pw-err');
+            if (pw.validity.valueMissing) { 
+                pw.setCustomValidity('Required.');
+                err.textContent = 'Required.'; 
+                pw.setAttribute('aria-invalid','true'); 
+            } else if (pw.validity.tooShort) { 
+                pw.setCustomValidity('Min. 8 chars.');
+                err.textContent = 'Min. 8 chars.'; 
+                pw.setAttribute('aria-invalid','true'); 
+            } else { 
+                pw.setCustomValidity('');
+                err.textContent = ''; 
+                pw.setAttribute('aria-invalid','false'); 
+            }
+        }
+
+        function validateConfirm() {
+            const err = document.getElementById('confirm-err');
+            if (confirm.value === '') {
+                confirm.setCustomValidity('Required.');
+                err.textContent = 'Required.';
+                confirm.setAttribute('aria-invalid', 'true');
+            } else if (confirm.value !== pw.value) {
+                confirm.setCustomValidity('Passwords do not match');
+                err.textContent = 'Passwords do not match.';
+                confirm.setAttribute('aria-invalid', 'true');
+            } else {
+                confirm.setCustomValidity('');
+                err.textContent = '✓ Passwords match';
+                confirm.setAttribute('aria-invalid', 'false');
+            }
+        }
+
+        function updateSubmitState() {
+            submitBtn.disabled = !form.checkValidity();
+        }
+
+        usernameInput.addEventListener('input', e => {
+            validateUsername(e.target);
+            updateSubmitState();
+        });
+
+        pw.addEventListener('input', () => {
+            validatePw();
+            validateConfirm();
+            updateSubmitState();
+        });
+
+        confirm.addEventListener('input', () => {
+            validateConfirm();
+            updateSubmitState();
+        });
+    </script>
+</body>
+</html>
