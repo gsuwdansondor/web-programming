@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form with JS Validation</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f9; padding: 20px; }
+        form { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .field-group { margin-bottom: 15px; display: flex; flex-direction: column; }
+        label { margin-bottom: 5px; font-weight: bold; color: #333; }
+        input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+        .error-msg { color: #ef4444; font-size: 12px; margin-top: 4px; min-height: 16px; }
+        button[type="submit"] { background: #007bff; color: white; padding: 10px; border: none; border-radius: 4px; width: 100%; cursor: pointer; transition: opacity 0.2s; }
+        button[type="submit"]:disabled { background: #a0c4ff; cursor: not-allowed; opacity: 0.4; }
+    </style>
+</head>
+<body>
+
+    <form id="reg-form" novalidate>
+        <div class="field-group">
+            <label for="sid">Student ID</label>
+            <input type="text" id="sid" required aria-describedby="sid-err" aria-invalid="false" placeholder="9 digits">
+            <span id="sid-err" class="error-msg" role="alert"></span>
+        </div>
+
+        <div class="field-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required aria-describedby="email-err" aria-invalid="false" placeholder="name@example.com">
+            <span id="email-err" class="error-msg" role="alert"></span>
+        </div>
+
+        <div class="field-group">
+            <label for="pw">Password</label>
+            <input type="password" id="pw" minlength="8" required aria-describedby="pw-err" aria-invalid="false" placeholder="Min. 8 characters">
+            <span id="pw-err" class="error-msg" role="alert"></span>
+        </div>
+
+        <div class="field-group">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" aria-describedby="phone-err" aria-invalid="false" placeholder="010-1234-5678">
+            <span id="phone-err" class="error-msg" role="alert"></span>
+        </div>
+
+        <button type="submit" id="submit-btn" disabled>Register</button>
+    </form>
+
+    <script>
+        const sid   = document.getElementById('sid');
+        const email = document.getElementById('email');
+        const pw    = document.getElementById('pw');
+        const phone = document.getElementById('phone');
+        const submitBtn = document.getElementById('submit-btn');
+
+        const SID_PATTERN   = /^\d{9}$/;
+        const PHONE_PATTERN = /^\d{3}-\d{4}-\d{4}$/;
+
+        submitBtn.disabled = true;
+
+        function setErr(input, errId, msg) {
+            document.getElementById(errId).textContent = msg;
+            input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+            input.style.borderColor = msg ? '#ef4444' : (input.value ? '#22c55e' : '');
+        }
+
+        function validateSid() {
+            if (sid.validity.valueMissing)         setErr(sid, 'sid-err', 'Required.');
+            else if (!SID_PATTERN.test(sid.value)) setErr(sid, 'sid-err', 'Exactly 9 digits.');
+            else                                   setErr(sid, 'sid-err', '');
+        }
+
+        function validateEmail() {
+            if (email.validity.valueMissing)      setErr(email, 'email-err', 'Required.');
+            else if (email.validity.typeMismatch) setErr(email, 'email-err', 'Valid email required.');
+            else                                  setErr(email, 'email-err', '');
+        }
+
+        function validatePw() {
+            if (pw.validity.valueMissing) setErr(pw, 'pw-err', 'Required.');
+            else if (pw.validity.tooShort) setErr(pw, 'pw-err', 'Min. 8 characters.');
+            else                           setErr(pw, 'pw-err', '');
+        }
+
+        function validatePhone() {
+            if (!PHONE_PATTERN.test(phone.value))
+                setErr(phone, 'phone-err', 'Format: 010-1234-5678');
+            else
+                setErr(phone, 'phone-err', '');
+        }
+
+        function updateSubmitState() {
+            const allValid = [sid, email, pw].every(f => f.validity.valid)
+                && PHONE_PATTERN.test(phone.value);
+            submitBtn.disabled = !allValid;
+            submitBtn.style.opacity = allValid ? '1' : '0.4';
+        }
+
+        [
+            [sid,   validateSid],
+            [email, validateEmail],
+            [pw,    validatePw],
+            [phone, validatePhone]
+        ].forEach(([el, fn]) => {
+            el.addEventListener('input', () => { fn(); updateSubmitState(); });
+        });
+    </script>
+</body>
+</html>
