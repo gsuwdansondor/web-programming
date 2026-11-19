@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        fieldset { margin-bottom: 15px; padding: 10px 15px; }
+        .form-group { margin-bottom: 10px; display: flex; flex-direction: column; }
+        input:not(:placeholder-shown):valid { border-color: green; }
+        input:not(:placeholder-shown):invalid { border-color: red; }
+    </style>
+</head>
+<body>
+
+    <form method="post" action="/submit">
+        <fieldset>
+            <legend>Personal Info</legend>
+            <div class="form-group">
+                <label for="fullname">Full Name:</label>
+                <input type="text" id="fullname" name="fullname" required placeholder="Full Name">
+            </div>
+            <div class="form-group">
+                <label for="studentid">Student ID:</label>
+                <input type="text" id="studentid" name="studentid" pattern="\d{9}" required placeholder="9 digits">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Account Info</legend>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" minlength="8" required>
+            </div>
+        </fieldset>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f9; padding: 20px; }
+        form { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        fieldset { border: 1px solid #ccc; border-radius: 6px; padding: 15px; margin-bottom: 15px; }
+        legend { font-weight: bold; color: #333; }
+        .form-group { margin-bottom: 12px; display: flex; flex-direction: column; }
+        label { margin-bottom: 4px; font-weight: 600; color: #555; }
+        input, select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+        input:not(:placeholder-shown):valid, select:valid { border-color: #28a745; background: #f8fff9; }
+        input[aria-invalid="true"], select[aria-invalid="true"], input:not(:placeholder-shown):invalid { border-color: #dc3545; background: #fff8f8; }
+        .error-msg { color: #dc3545; font-size: 12px; margin-top: 4px; min-height: 16px; }
+        .checkbox-group { flex-direction: row; align-items: center; gap: 8px; }
+        .checkbox-group input { width: auto; }
+        .checkbox-group label { margin: 0; font-weight: normal; }
+        button[type="submit"] { background: #007bff; color: white; padding: 10px; border: none; border-radius: 4px; font-size: 16px; width: 100%; cursor: pointer; }
+        button[type="submit"]:disabled { background: #99c2ff; cursor: not-allowed; }
+        #success-message { display: none; margin-top: 15px; padding: 12px; background: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 4px; text-align: center; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <form id="registration-form" method="post" action="/submit-registration" novalidate>
+        <fieldset>
+            <legend>Personal & Account Info</legend>
+            
+            <div class="form-group">
+                <label for="fullname">Full Name:</label>
+                <input type="text" id="fullname" required placeholder="Full Name" aria-describedby="fullname-err" aria-invalid="false">
+                <span id="fullname-err" class="error-msg" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="studentid">Student ID:</label>
+                <input type="text" id="studentid" pattern="\d{9}" required placeholder="9 digits" aria-describedby="studentid-err" aria-invalid="false">
+                <span id="studentid-err" class="error-msg" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="major">Major:</label>
+                <select id="major" required aria-describedby="major-err" aria-invalid="false">
+                    <option value="" disabled selected>Select major</option>
+                    <option value="cs">Computer Science</option>
+                    <option value="se">Software Engineering</option>
+                </select>
+                <span id="major-err" class="error-msg" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required placeholder="name@example.com" aria-describedby="email-err" aria-invalid="false">
+                <span id="email-err" class="error-msg" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="pw">Password:</label>
+                <input type="password" id="pw" minlength="8" required placeholder="Min 8 characters" aria-describedby="pw-err" aria-invalid="false">
+                <span id="pw-err" class="error-msg" role="alert"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm">Confirm Password:</label>
+                <input type="password" id="confirm" required placeholder="Re-enter password" aria-describedby="confirm-err" aria-invalid="false">
+                <span id="confirm-err" class="error-msg" role="alert"></span>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Experience & Terms</legend>
+            <div class="form-group">
+                <label for="experience">Coding Experience (Years): <span id="range-value">5</span></label>
+                <input type="range" id="experience" min="0" max="10" value="5">
+            </div>
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="terms" required aria-describedby="terms-err" aria-invalid="false">
+                <label for="terms">I agree to the terms</label>
+            </div>
+            <span id="terms-err" class="error-msg" role="alert"></span>
+        </fieldset>
+
+        <button type="submit" id="submit-btn" disabled>Register</button>
+        <div id="success-message" role="status" aria-live="polite">Registration successful!</div>
+    </form>
+
+    <script>
+        const form = document.getElementById('registration-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const successMessage = document.getElementById('success-message');
+
+        const fields = {
+            fullname: document.getElementById('fullname'),
+            studentid: document.getElementById('studentid'),
+            major: document.getElementById('major'),
+            email: document.getElementById('email'),
+            terms: document.getElementById('terms')
+        };
+
+        const pw = document.getElementById('pw');
+        const confirm = document.getElementById('confirm');
+        const rangeInput = document.getElementById('experience');
+        const rangeValueSpan = document.getElementById('range-value');
+
+        function setFieldError(input, msg) {
+            const err = document.getElementById(`${input.id}-err`);
+            input.setCustomValidity(msg);
+            if (err) err.textContent = msg;
+            input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+        }
+
+        function validateSimple(input, msg) {
+            if (!input.value.trim() || (input.validity && input.validity.typeMismatch)) {
+                setFieldError(input, msg);
+            } else {
+                setFieldError(input, '');
+            }
+        }
+
+        // Your exact snippet validation logic
+        function validatePw() {
+            const err = document.getElementById('pw-err');
+            if (pw.validity.valueMissing) { 
+                pw.setCustomValidity('Required.'); err.textContent = 'Required.'; pw.setAttribute('aria-invalid','true'); 
+            } else if (pw.validity.tooShort) { 
+                pw.setCustomValidity('Min. 8 chars.'); err.textContent = 'Min. 8 chars.'; pw.setAttribute('aria-invalid','true'); 
+            } else { 
+                pw.setCustomValidity(''); err.textContent = ''; pw.setAttribute('aria-invalid','false'); 
+            }
+        }
+
+        function validateConfirm() {
+            const err = document.getElementById('confirm-err');
+            if (confirm.value === '') {
+                confirm.setCustomValidity('Required.'); err.textContent = 'Required.'; confirm.setAttribute('aria-invalid', 'true');
+            } else if (confirm.value !== pw.value) {
+                confirm.setCustomValidity('Passwords do not match'); err.textContent = 'Passwords do not match.'; confirm.setAttribute('aria-invalid', 'true');
+            } else {
+                confirm.setCustomValidity(''); 
+                err.textContent = '✓ Passwords match'; 
+                confirm.setAttribute('aria-invalid', 'false');
+            }
+        }
+
+        function updateState() {
+            submitBtn.disabled = !form.checkValidity();
+        }
+
+        fields.fullname.addEventListener('input', () => { validateSimple(fields.fullname, 'Full name is required.'); updateState(); });
+        fields.studentid.addEventListener('input', () => { 
+            const ok = /^\d{9}$/.test(fields.studentid.value);
+            setFieldError(fields.studentid, ok ? '' : 'Student ID must be 9 digits.');
+            updateState(); 
+        });
+        fields.major.addEventListener('input', () => { validateSimple(fields.major, 'Select a major.'); updateState(); });
+        fields.email.addEventListener('input', () => { validateSimple(fields.email, 'Valid email required.'); updateState(); });
+        
+        pw.addEventListener('input', () => { validatePw(); validateConfirm(); updateState(); });
+        confirm.addEventListener('input', () => { validateConfirm(); updateState(); });
+        
+        rangeInput.addEventListener('input', () => { rangeValueSpan.textContent = rangeInput.value; updateState(); });
+        fields.terms.addEventListener('input', () => { setFieldError(fields.terms, fields.terms.checked ? '' : 'Must agree to terms.'); updateState(); });
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            successMessage.style.display = form.checkValidity() ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
+        <fieldset>
+            <legend>Experience</legend>
+            <div class="form-group">
+                <label for="experience">Coding Experience (Years): <span id="range-val">5</span></label>
+                <input type="range" id="experience" name="experience" min="0" max="10" value="5">
+            </div>
+            <div class="form-group">
+                <label><input type="checkbox" id="terms" name="terms" required> I agree to the terms</label>
+            </div>
+        </fieldset>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        // Bonus: live update range slider value
+        const rangeInput = document.getElementById('experience');
+        const rangeVal = document.getElementById('range-val');
+        
+        rangeInput.addEventListener('input', () => {
+            rangeVal.textContent = rangeInput.value;
+        });
+    </script>
+</body>
+</html>
