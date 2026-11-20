@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notification Center</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        font-family: Arial, sans-serif;
+        background: #f8fafc;
+        color: #0f172a;
+      }
+
+      .panel {
+        width: min(100%, 480px);
+        padding: 24px;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        background: #ffffff;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      }
+
+      h1 {
+        margin: 0 0 16px;
+        font-size: 1.35rem;
+      }
+
+      .list {
+        display: grid;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 16px;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        background: #f8fafc;
+        font-size: 0.95rem;
+      }
+
+      .item.success {
+        border-color: #bbf7d0;
+        background: #f0fdf4;
+        color: #166534;
+      }
+
+      .item.warning {
+        border-color: #fde68a;
+        background: #fffbeb;
+        color: #92400e;
+      }
+
+      .item.info {
+        border-color: #bfdbfe;
+        background: #eff6ff;
+        color: #1e40af;
+      }
+
+      .icon {
+        flex: 0 0 auto;
+        font-size: 1.1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const notifications = [
+        { id: 1, type: 'success', message: 'Your settings have been saved.' },
+        { id: 2, type: 'warning', message: 'Storage is almost full (90% used).' },
+        { id: 3, type: 'info',    message: 'A new software update is available.' },
+      ];
+
+      function NotificationItem({ type, message }) {
+        const icon = type === 'success' ? '✅' : type === 'warning' ? '⚠️' : 'ℹ️';
+
+        return (
+          <li className={`item ${type}`}>
+            <span className="icon" aria-hidden="true">{icon}</span>
+            <span>{message}</span>
+          </li>
+        );
+      }
+
+      function NotificationList() {
+        return (
+          <main className="panel">
+            <h1>System Alerts</h1>
+            <ul className="list">
+              {notifications.map((n) => (
+                <NotificationItem 
+                  key={n.id} 
+                  type={n.type} 
+                  message={n.message} 
+                />
+              ))}
+            </ul>
+          </main>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById('root')).render(<NotificationList />);
+    </script>
+  </body>
+</html>

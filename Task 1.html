@@ -1,0 +1,26 @@
+function ProfileCard({
+  name,
+  role,
+  email,
+  avatarUrl = "https://via.placeholder.com/80"
+}) {
+  return (
+    <div style={{ border: "1px solid #ccc", borderRadius: "8px", padding: "16px", maxWidth: "300px" }}>
+      <img src={avatarUrl} alt={name} style={{ borderRadius: "50%", width: "80px" }} />
+      <h2>{name}</h2>
+      <p>{role}</p>
+      <a href={`mailto:${email}`}>{email}</a>
+    </div>
+  );
+}
+
+// Usage
+export default function App() {
+  return (
+    <ProfileCard
+      name="Ganbold Suvdansondor"
+      role="Student"
+      email="gsuwdansondor@gmail.com"
+    />
+  );
+}
