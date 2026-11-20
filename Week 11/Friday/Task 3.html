@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collapsible Card Component</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    function Card({ title, children }) {
+      const [isOpen, setIsOpen] = useState(true);
+
+      return (
+        <div
+          style={{
+            border: '1px solid #bae6fd',
+            borderRadius: 10,
+            padding: '16px 20px',
+            marginBottom: 16,
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: isOpen ? 10 : 0,
+            }}
+          >
+            <h3 style={{ margin: 0 }}>{title}</h3>
+            <button
+              type="button"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-expanded={isOpen}
+              style={{
+                background: '#e0f2fe',
+                border: '1px solid #7dd3fc',
+                borderRadius: 6,
+                padding: '4px 10px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                color: '#0369a1',
+              }}
+            >
+              {isOpen ? 'Hide ▲' : 'Show ▼'}
+            </button>
+          </div>
+
+          {isOpen && <div>{children}</div>}
+        </div>
+      );
+    }
+
+    function App() {
+      return (
+        <main style={{ maxWidth: 600, margin: '40px auto', padding: '0 20px', fontFamily: 'Arial, sans-serif' }}>
+          <Card title="Lecture Topics">
+            <ul>
+              <li>Components</li>
+              <li>Props</li>
+              <li>State (useState)</li>
+            </ul>
+          </Card>
+
+          <Card title="Homework">
+            <p>Build a student portfolio component</p>
+          </Card>
+        </main>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
