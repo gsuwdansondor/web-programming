@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Validation</title>
+  <style>
+    body { font-family: sans-serif; padding: 32px 20px; max-width: 450px; margin: auto; color: #222; }
+    h2 { margin-top: 26px; font-size: 1rem; }
+    label { display: block; font-weight: 600; font-size: 0.9rem; margin: 12px 0 4px; }
+    input { width: 100%; padding: 8px 10px; font-size: 1rem; border: 1.5px solid #94a3b8; border-radius: 6px; box-sizing: border-box; }
+    button { margin-top: 12px; padding: 9px 18px; font-weight: 600; color: #fff; background: #0f766e; border: none; border-radius: 6px; cursor: pointer; }
+    .msg { min-height: 1.2em; margin: 6px 0 0; color: #b91c1c; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>Form Validation</h1>
+  <p>Try submitting both forms with an empty email.</p>
 
+  <h2>1. Standard Browser Validation</h2>
+  <form>
+    <label for="email-1">Email</label>
+    <input type="email" id="email-1" required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>2. Custom Validation (novalidate)</h2>
+  <form id="custom-form" novalidate>
+    <label for="email-2">Email</label>
+    <input type="email" id="email-2" required>
+    <p class="msg" id="email-msg"></p>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const customForm = document.getElementById('custom-form');
+    const emailInput = document.getElementById('email-2');
+    const msg = document.getElementById('email-msg');
+
+    customForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      msg.textContent = emailInput.checkValidity() ? '' : 'Please enter a valid email address.';
+    });
+  </script>
+</body>
+</html>
