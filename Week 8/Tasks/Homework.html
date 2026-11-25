@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration Form</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+      padding: 40px 20px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .form-container {
+      background: #ffffff;
+      padding: 36px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 24px;
+      color: #0f172a;
+      margin-bottom: 24px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+      text-align: center;
+    }
+    fieldset {
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      background: #ffffff;
+    }
+    legend {
+      font-weight: 700;
+      font-size: 15px;
+      color: #1a56db;
+      padding: 0 8px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 6px;
+      color: #475569;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+      outline: none;
+      transition: all 0.2s ease;
+      background-color: #fff;
+    }
+    input:focus, select:focus {
+      border-color: #8e1adb;
+      box-shadow: 0 0 0 3px rgba(142, 26, 219, 0.15);
+    }
+    
+    input:not([type="checkbox"]):not([type="range"]):valid:not(:placeholder-shown),
+    select:valid {
+      border-color: #16a34a;
+      background-color: #f0fdf4;
+    }
+    input:not([type="checkbox"]):not([type="range"]):invalid:not(:placeholder-shown),
+    select:invalid {
+      border-color: #dc2626;
+      background-color: #fef2f2;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .checkbox-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #8e1adb;
+      cursor: pointer;
+    }
+    .checkbox-group label {
+      margin-bottom: 0;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+    }
+
+    .range-group {
+      margin-top: 16px;
+    }
+    .range-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .range-header label {
+      margin-bottom: 0;
+    }
+    #range-value {
+      font-weight: 700;
+      color: #8e1adb;
+      background: #eff6ff;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: #8e1adb;
+      cursor: pointer;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      margin-top: 8px;
+      background: #8e1adb;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+    button[type="submit"]:hover {
+      background: #8e1adb;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Student Registration</h2>
+    
+    <form method="post" action="/register">
+      
+      <fieldset>
+        <legend>Personal Info</legend>
+        
+        <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname" name="fullname" required placeholder="Ganbold Suvdansondor">
+        </div>
+
+        <div class="form-group">
+          <label for="studentid">Student ID</label>
+          <input type="text" id="studentid" name="student_id" pattern="\d{9}" required placeholder="202539440" title="Enter your 9-digit student ID">
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+
+        <div class="form-group">
+          <label for="major">Major</label>
+          <select id="major" name="major" required>
+            <option value="" disabled selected>-- Select your major --</option>
+            <option value="cs">Computer Engineering / Science</option>
+            <option value="se">Software Engineering</option>
+            <option value="ai">Artificial Intelligence</option>
+            <option value="ds">Data Science</option>
+          </select>
+        </div>
+
+        <div class="range-group">
+          <div class="range-header">
+            <label for="experience">Years of Coding Experience</label>
+            <span id="range-value">2 years</span>
+          </div>
+          <input type="range" id="experience" name="experience" min="0" max="10" value="2" 
+                 oninput="document.getElementById('range-value').textContent = this.value + (this.value == '1' ? ' year' : ' years')">
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Account Info</legend>
+        
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required placeholder="name@gachon.ac.kr">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" minlength="8" required placeholder="At least 8 characters">
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="text" id="phone" name="phone" pattern="\d{3}-\d{4}-\d{4}" required placeholder="010-1234-5678" title="Format: 010-1234-5678">
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="terms" name="terms" required>
+          <label for="terms">I agree to the terms</label>
+        </div>
+      </fieldset>
+
+      <button type="submit">Submit Registration</button>
+    </form>
+  </div>
+
+</body>
+</html>
