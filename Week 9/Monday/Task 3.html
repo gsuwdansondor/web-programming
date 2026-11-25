@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html><body style="font-family:system-ui;padding:24px;max-width:400px">
+<style>
+  input { width:100%; padding:8px; border:2px solid #ccc; border-radius:6px; font-size:15px; margin-bottom:4px; }
+  .error { color:red; font-size:13px; } /* bad: color only */
+  button { padding:8px 16px; border:none; border-radius:6px; cursor:pointer; }
+  .icon-btn { background:#1a7f5a; color:white; width:36px; height:36px; font-size:18px; border-radius:50%; }
+  .submit-btn { background:#1a56db; color:white; padding:10px 24px; font-size:15px; width:100%; margin-top:8px; }
+  a img { display:block; width:80px; }
+</style>
+
+<h2>Sign Up</h2>
+
+<!-- Issue 1: icon button with no label -->
+<button class="icon-btn" aria-label="Search">🔍</button>
+
+<!-- Issue 2: input with no label -->
+<label for="email-field">Email address</label>
+<input type="email" placeholder="you@example.com" id="email-field">
+<div class="error">Please enter a valid email address.</div>
+
+<!-- Issue 3: error shown only in color (no text marker like "Error:") -->
+<div class="error" role="alert">
+    Error: Password too short.</div>
+
+<button class="submit-btn">Create account</button>
+
+<!-- Issue 4: linked image with bad alt -->
+<a href="/about" style="margin-top:16px; display:inline-block">
+  <img src="" alt="Learn about our team" style="background:#e0eaff;width:80px;height:40px;border-radius:4px">
+</a>
+
+</body></html>
