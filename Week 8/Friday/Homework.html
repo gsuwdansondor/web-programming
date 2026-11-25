@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upgraded Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7f6;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .form-container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 450px;
+    }
+    h2 {
+      margin-top: 0;
+      color: #333;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #555;
+    }
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    input[aria-invalid="true"] {
+      border-color: #e74c3c;
+      background-color: #fdf2f2;
+    }
+    input[aria-invalid="false"] {
+      border-color: #2ecc71;
+    }
+    .error-msg {
+      font-size: 12px;
+      color: #e74c3c;
+      margin-top: 4px;
+      min-height: 16px;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button:disabled {
+      background-color: #bdc3c7;
+      cursor: not-allowed;
+    }
+    button:hover:not(:disabled) {
+      background-color: #2980b9;
+    }
+    .success-msg {
+      display: none;
+      background-color: #d4edda;
+      color: #155724;
+      padding: 12px;
+      border-radius: 4px;
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <h2>Register</h2>
+  
+  <form id="registrationForm" novalidate>
+    
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" required minlength="3" aria-describedby="usernameError">
+      <span id="usernameError" class="error-msg"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" required aria-describedby="emailError">
+      <span id="emailError" class="error-msg"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" required minlength="6" aria-describedby="passwordError">
+      <span id="passwordError" class="error-msg"></span>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" required aria-describedby="confirmPasswordError">
+      <span id="confirmPasswordError" class="error-msg"></span>
+    </div>
+
+    <button type="submit" id="submitBtn" disabled>Register</button>
+
+    <div id="successMessage" class="success-msg">Registration successful!</div>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('registrationForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const successMessage = document.getElementById('successMessage');
+  
+  const inputs = form.querySelectorAll('input');
+
+  function validateField(input) {
+    const errorSpan = document.getElementById(input.getAttribute('aria-describedby'));
+    
+    input.setCustomValidity('');
+
+    if (input.id === 'confirmPassword') {
+      const password = document.getElementById('password').value;
+      if (input.value !== password) {
+        input.setCustomValidity('Passwords do not match.');
+      }
+    }
+
+    if (input.validity.valid) {
+      input.setAttribute('aria-invalid', 'false');
+      errorSpan.textContent = '';
+    } else {
+      input.setAttribute('aria-invalid', 'true');
+    
+      if (input.validity.valueMissing) {
+        errorSpan.textContent = 'This field is required.';
+      } else if (input.validity.typeMismatch) {
+        errorSpan.textContent = 'Please enter a valid value format.';
+      } else if (input.validity.tooShort) {
+        errorSpan.textContent = `At least ${input.minLength} characters required.`;
+      } else {
+        errorSpan.textContent = input.validationMessage;
+      }
+    }
+  }
+
+  function updateFormValidity() {
+    if (form.checkValidity()) {
+      submitBtn.removeAttribute('disabled');
+    } else {
+      submitBtn.setAttribute('disabled', 'true');
+    }
+  }
+
+  inputs.forEach(input => {
+    input.addEventListener('input', () => {
+      validateField(input);
+      updateFormValidity();
+    });
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    
+    inputs.forEach(input => validateField(input));
+
+    if (form.checkValidity()) {
+      successMessage.style.display = 'block';
+      form.reset();
+      inputs.forEach(input => input.removeAttribute('aria-invalid'));
+      submitBtn.setAttribute('disabled', 'true');
+    }
+  });
+</script>
+
+</body>
+</html>

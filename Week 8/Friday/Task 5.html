@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>setCustomValidity()</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 30px 16px; max-width: 460px; margin: 0 auto; color: #1e293b; }
+    label { display: block; font-weight: 600; font-size: .9rem; margin: 14px 0 4px; }
+    input { width: 100%; padding: 9px 12px; font-size: 1rem; border: 2px solid #c8d4f0; border-radius: 8px; box-sizing: border-box; }
+    input:invalid:not(:placeholder-shown) { border-color: #dc2626; }
+    input:valid:not(:placeholder-shown) { border-color: #16a34a; }
+    button { margin-top: 18px; padding: 10px 20px; font-weight: 700; color: white; background: #1a56db; border: none; border-radius: 8px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>setCustomValidity()</h1>
+  <p>Type two different passwords, then press Submit.</p>
+
+  <form>
+    <label for="password">Password</label>
+    <input type="password" id="password" required minlength="8" placeholder=" ">
+
+    <label for="confirm">Confirm password</label>
+    <input type="password" id="confirm" required placeholder=" ">
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const password = document.querySelector('#password');
+    const confirm = document.querySelector('#confirm');
+
+    function checkMatch() {
+      if (confirm.value && confirm.value !== password.value) {
+        confirm.setCustomValidity('Passwords do not match.');
+      } else {
+        confirm.setCustomValidity(''); 
+      }
+    }
+
+    password.addEventListener('input', checkMatch);
+    confirm.addEventListener('input', checkMatch);
+  </script>
+</body>
+</html>

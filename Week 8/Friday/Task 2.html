@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Submit Demo</title>
+  <style>
+    body { font-family: sans-serif; padding: 32px 20px; max-width: 450px; margin: auto; color: #222; }
+    label { display: block; font-weight: 600; font-size: 0.9rem; margin: 12px 0 4px; }
+    input { width: 100%; padding: 8px 10px; font-size: 1rem; border: 1.5px solid #94a3b8; border-radius: 6px; box-sizing: border-box; }
+    button { margin-top: 12px; padding: 9px 18px; font-weight: 600; color: #fff; background: #0f766e; border: none; border-radius: 6px; cursor: pointer; }
+    #output { margin-top: 16px; padding: 12px; border-radius: 6px; background: #f8fafc; border: 1px solid #e2e8f0; font-family: monospace; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1>Handling Form Submit</h1>
+  <p>Click submit to see the validation result without reloading the page.</p>
+
+  <form id="signup-form" novalidate>
+    <label for="user-name">Username</label>
+    <input type="text" id="user-name" required minlength="3">
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="output">Ready to submit...</div>
+
+  <script>
+    const signupForm = document.getElementById('signup-form');
+    const nameInput = document.getElementById('user-name');
+    const output = document.getElementById('output');
+    let count = 0;
+
+    signupForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      count++;
+
+      if (!signupForm.checkValidity()) {
+        output.textContent = `Try #${count}: Invalid — username must be at least 3 characters.`;
+        return;
+      }
+
+      output.textContent = `Try #${count}: Valid — submitted username "${nameInput.value}"`;
+    });
+  </script>
+</body>
+</html>

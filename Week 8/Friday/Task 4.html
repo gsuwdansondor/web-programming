@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Validity API</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 30px 16px; max-width: 520px; margin: 0 auto; color: #1e293b; }
+    label { display: block; font-weight: 600; font-size: .9rem; margin: 14px 0 4px; }
+    input { width: 100%; padding: 9px 12px; font-size: 1rem; border: 2px solid #c8d4f0; border-radius: 8px; box-sizing: border-box; }
+    table { width: 100%; margin-top: 18px; border-collapse: collapse; font-size: .88rem; }
+    td { padding: 6px 10px; border-bottom: 1px solid #e2e8f0; }
+    td:first-child { font-family: Consolas, monospace; }
+    .true { color: #dc2626; font-weight: 700; }
+    .valid-row td { color: #16a34a; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <p>This email field has <code>required minlength="6" type="email"</code>. Type and watch the flags.</p>
+
+  <label for="email">Email</label>
+  <input type="email" id="email" required minlength="6">
+
+  <table>
+    <tbody id="flags"></tbody>
+  </table>
+  <p id="message"></p>
+
+  <script>
+    const email = document.querySelector('#email');
+    const flags = document.querySelector('#flags');
+    const message = document.querySelector('#message');
+    const names = ['valueMissing', 'typeMismatch', 'tooShort', 'tooLong', 'patternMismatch', 'rangeUnderflow', 'rangeOverflow', 'customError', 'valid'];
+
+    function getMessage(v) {
+      if (v.valueMissing) return 'Email is required.';
+      if (v.typeMismatch) return 'That does not look like an email address.';
+      if (v.tooShort) return 'Email must be at least ' + email.minLength + ' characters.';
+      return 'Looks good!';
+    }
+
+    function update() {
+      const v = email.validity;
+      flags.innerHTML = names.map((name) =>
+        `<tr class="${name === 'valid' ? 'valid-row' : ''}"><td>validity.${name}</td><td class="${v[name] && name !== 'valid' ? 'true' : ''}">${v[name]}</td></tr>`
+      ).join('');
+      message.textContent = getMessage(v);
+    }
+
+    email.addEventListener('input', update);
+    update();
+  </script>
+</body>
+</html>

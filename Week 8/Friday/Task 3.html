@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The input Event</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 30px 16px; max-width: 460px; margin: 0 auto; color: #1e293b; }
+    label { display: block; font-weight: 600; font-size: .9rem; margin: 14px 0 4px; }
+    input { width: 100%; padding: 9px 12px; font-size: 1rem; border: 2px solid #c8d4f0; border-radius: 8px; box-sizing: border-box; outline: none; }
+    input.ok { border-color: #16a34a; background: #f0fdf4; }
+    input.bad { border-color: #dc2626; background: #fef2f2; }
+    .feedback { min-height: 1.2em; margin: 6px 0 0; font-size: .85rem; color: #64748b; }
+  </style>
+</head>
+<body>
+  
+  <h1>The input Event</h1>
+  <p>Type a nickname — the feedback updates on every keystroke.</p>
+
+  <label for="nickname">Nickname <span style="font-weight:400">(3–12 letters)</span></label>
+  <input type="text" id="nickname" maxlength="12">
+  <p class="feedback" id="feedback">0 / 12 characters</p>
+
+  <script>
+    const nickname = document.querySelector('#nickname');
+    const feedback = document.querySelector('#feedback');
+
+    nickname.addEventListener('input', () => {
+      const length = nickname.value.length;
+      const ok = /^[A-Za-z]{3,12}$/.test(nickname.value);
+
+      nickname.classList.toggle('ok', ok);
+      nickname.classList.toggle('bad', length > 0 && !ok);
+      feedback.textContent = length + ' / 12 characters' + (length > 0 && !ok ? ' — letters only, at least 3' : '');
+    });
+  </script>
+</body>
+</html>
